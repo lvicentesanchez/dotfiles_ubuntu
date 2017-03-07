@@ -2,4 +2,3 @@ alias ls="ls --color=auto"
 alias l="ls -la"
 
 eval (dircolors -c $HOME/.dir_colors/dircolors)
-
