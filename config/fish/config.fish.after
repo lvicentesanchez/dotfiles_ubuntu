@@ -1,6 +1,6 @@
 alias ls="ls --color=auto"
 alias l="ls -la"
 
-set -gx PATH ~/.cargo/bin ~/bin $PATH
+set -gx PATH ~/.cargo/bin $PATH
 
 eval (dircolors -c $HOME/.dir_colors/dircolors)
