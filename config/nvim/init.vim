@@ -3,6 +3,8 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
+Plug 'ensime/ensime-vim'
+Plug 'derekwyatt/vim-scala'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
