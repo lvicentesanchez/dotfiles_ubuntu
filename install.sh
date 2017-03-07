@@ -12,3 +12,6 @@ ln -s ~/.dotfiles/fonts.conf.d ~/.fonts.conf.d
 sudo fc-cache -vf ~/.fonts
 
 ln -s ~/.dotfiles/dir_colors ~/.dir_colors
+
+mkdir -p .local/share/nvim/site/autoload/
+ln -s ~/.dotfiles/local/share/nvim/site/autoload/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
