@@ -7,6 +7,7 @@ Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'derekwyatt/vim-scala'
 Plug 'rust-lang/rust.vim'
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -32,4 +33,10 @@ set laststatus=2
 set t_Co=256
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
+
+" Deoplete
+"
+let g:deoplete#enable_at_startup=1
+
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
