@@ -5,6 +5,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'altercation/vim-colors-solarized'
 Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'derekwyatt/vim-scala'
+Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -37,6 +38,12 @@ let g:airline_powerline_fonts=1
 " Deoplete
 "
 let g:deoplete#enable_at_startup=1
+
+" Racer
+"
+set hidden
+let g:racer_cmd = "~/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
 
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
