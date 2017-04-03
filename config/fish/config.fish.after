@@ -2,6 +2,6 @@ alias ls="ls --color=auto"
 alias l="ls -la"
 
 set -gx PATH ~/.cargo/bin $PATH
-set -gx RUST_SRC_PATH ~/development/repositories/github/rust-lang/rust/src/
+set -gx RUST_SRC_PATH ~/development/repositories/github/rust/rust-lang/rust/src/
 
 eval (dircolors -c $HOME/.dir_colors/dircolors)

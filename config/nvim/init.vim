@@ -18,6 +18,8 @@ call plug#end()
 
 " Generic vim config
 "
+let mapleader = "\<Space>"
+
 syntax enable
 set background=dark
 colorscheme solarized
@@ -34,6 +36,13 @@ set laststatus=2
 set t_Co=256
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
+
+" Denite
+"
+nnoremap <leader>r :<C-u>Denite -mode=normal file_rec<CR>
+nnoremap <leader>f :<C-u>Denite file<CR>
+nnoremap <leader>b :<C-u>Denite buffer<CR>
+
 
 " Deoplete
 "
