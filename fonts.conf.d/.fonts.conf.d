@@ -1,1 +1,0 @@
-/home/luisvicente/.dotfiles/.fonts.conf.d
