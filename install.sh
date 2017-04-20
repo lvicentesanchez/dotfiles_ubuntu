@@ -19,3 +19,5 @@ ln -s ~/.dotfiles/local/share/nvim/site/autoload/plug.vim ~/.local/share/nvim/si
 mkdir -p ~/.config/nvim
 ln -s ~/.dotfiles/config/nvim/init.vim ~/.config/nvim/init.vim
 
+ln -s ~/.dotfiles/spacemacs ~/.spacemacs
+
