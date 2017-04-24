@@ -26,6 +26,7 @@
      scala
      shell
      syntax-checking
+     terraform
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -34,7 +35,7 @@
      ;; (git :variables
      ;;      git-gutter-use-fringe t)
      )
-   ;; List of additional packages that will be installed wihout being
+   ;; List of additional packages that will be installed wihout bMeslo LG M for Powerlineeing
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages then consider to create a layer, you can also put the
    ;; configuration in `dotspacemacs/config'.
@@ -82,8 +83,8 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+   dotspacemacs-default-font '("Meslo LG M DZ for Powerline"
+                               :size 15
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -173,7 +174,7 @@ layers configuration."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (powerline spinner hydra parent-mode pkg-info epl flx iedit anzu evil goto-chg undo-tree highlight f s diminish bind-map bind-key packed async popup smartparens projectile avy helm helm-core xterm-color unfill toml-mode shell-pop racer org-projectile org-present org-pomodoro alert log4e gntp org-download noflet mwim multi-term mmm-mode markdown-toc markdown-mode htmlize helm-company helm-c-yasnippet gnuplot gh-md fuzzy fsharp-mode company-quickhelp flycheck-rust seq flycheck-pos-tip pos-tip flycheck evil-visual-mark-mode eshell-z eshell-prompt-extras esh-help ensime sbt-mode scala-mode company-statistics company cargo rust-mode auto-yasnippet yasnippet ac-ispell auto-complete solarized-theme ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
+    (terraform-mode hcl-mode powerline spinner hydra parent-mode pkg-info epl flx iedit anzu evil goto-chg undo-tree highlight f s diminish bind-map bind-key packed async popup smartparens projectile avy helm helm-core xterm-color unfill toml-mode shell-pop racer org-projectile org-present org-pomodoro alert log4e gntp org-download noflet mwim multi-term mmm-mode markdown-toc markdown-mode htmlize helm-company helm-c-yasnippet gnuplot gh-md fuzzy fsharp-mode company-quickhelp flycheck-rust seq flycheck-pos-tip pos-tip flycheck evil-visual-mark-mode eshell-z eshell-prompt-extras esh-help ensime sbt-mode scala-mode company-statistics company cargo rust-mode auto-yasnippet yasnippet ac-ispell auto-complete solarized-theme ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint info+ indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
