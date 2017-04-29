@@ -20,20 +20,21 @@ call plug#end()
 "
 let mapleader = "\<Space>"
 
+set t_Co=16
+
 syntax enable
-set background=dark
-colorscheme solarized
 
 set backspace=2
-
 set noshelltemp
-
 set shortmess+=I
+
+set background=dark
+let g:solarized_termcolors=16
+colorscheme solarized
 
 " Airline configuration
 "
 set laststatus=2
-set t_Co=256
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
 
