@@ -6,6 +6,7 @@
 
 ln -s ~/.dotfiles/config/fish/config.fish ~/.config/fish/config.fish
 ln -s ~/.dotfiles/config/fish/config.fish.after ~/.config/fish/config.fish.after
+ln -s ~/.dotfiles/config/fish/config.fish.functions ~/.config/fish/config.fish.functions
 
 ln -s ~/.dotfiles/fonts ~/.fonts
 ln -s ~/.dotfiles/fonts.conf.d ~/.fonts.conf.d

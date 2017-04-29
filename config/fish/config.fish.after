@@ -6,8 +6,4 @@ set -gx RUST_SRC_PATH ~/development/repositories/github/rust/rust-lang/rust/src/
 
 dircolors -c $HOME/.dir_colors/dircolors | source
 
-function fix-ssh-agent
-    set -xg SSH_AUTH_SOCK (ssh-agent | grep SSH_AUTH_SOCK | cut -f1 -d';' | cut -f2 -d'=')
-    set -xg SSH_AGENT_PID (ssh-agent | grep SSH_AGENT_PID | cut -f1 -d';' | cut -f2 -d'=')
-end
-
+eval (opam config env)
