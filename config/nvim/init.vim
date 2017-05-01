@@ -20,6 +20,8 @@ call plug#end()
 "
 let mapleader = "\<Space>"
 
+set lazyredraw
+
 set t_Co=16
 
 syntax enable

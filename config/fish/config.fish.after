@@ -6,4 +6,4 @@ set -gx RUST_SRC_PATH ~/development/repositories/github/rust/rust-lang/rust/src/
 
 dircolors -c $HOME/.dir_colors/dircolors | source
 
-eval (opam config env)
+opam config env | source
