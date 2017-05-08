@@ -1,9 +1,12 @@
 alias ls="ls --color=auto"
-alias l="ls -la"
+#alias l="ls -la"
 
+set -gx BROWSER (which google-chrome-stable)
 set -gx PATH ~/.cargo/bin ~/.local/bin $PATH
 set -gx RUST_SRC_PATH ~/development/repositories/github/rust/rust-lang/rust/src/
 
 dircolors -c $HOME/.dir_colors/dircolors | source
 
 opam config env | source
+
+bass . /opt/google-cloud-sdk/completion.bash.inc

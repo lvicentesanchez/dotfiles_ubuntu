@@ -3,6 +3,7 @@
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
+Plug 'ekalinin/Dockerfile.vim'
 Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'derekwyatt/vim-scala'
 Plug 'racer-rust/vim-racer'
