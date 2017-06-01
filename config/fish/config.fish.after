@@ -1,9 +1,11 @@
 alias ls="ls --color=auto"
 #alias l="ls -la"
 
-set -gx BROWSER (which google-chrome-stable)
+set -gx BROWSER (which firefox)
+set -gx EDITOR (which nvim)
+set -gx HELM_HOME ~/.helm
 set -gx PATH ~/.cargo/bin ~/.local/bin $PATH
-set -gx RUST_SRC_PATH ~/development/repositories/github/rust/rust-lang/rust/src/
+set -gx RUST_SRC_PATH ~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
 dircolors -c $HOME/.dir_colors/dircolors | source
 
