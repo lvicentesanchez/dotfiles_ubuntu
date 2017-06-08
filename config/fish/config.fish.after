@@ -1,7 +1,7 @@
 alias ls="ls --color=auto"
 #alias l="ls -la"
 
-set -gx BROWSER (which firefox)
+set -gx BROWSER (which google-chrome-beta)
 set -gx EDITOR (which nvim)
 set -gx HELM_HOME ~/.helm
 set -gx PATH ~/.cargo/bin ~/.local/bin $PATH
