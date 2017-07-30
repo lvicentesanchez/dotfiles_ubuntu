@@ -1,0 +1,11 @@
+[Unit]
+Description=Timer to check battery status
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=4min
+Persistent=true
+
+[Install]
+WantedBy=timers.target
+
