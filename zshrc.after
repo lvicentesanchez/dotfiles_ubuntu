@@ -2,3 +2,4 @@ DEFAULT_USER="luis"
 
 eval `dircolors ~/.dir_colors/dircolors`
 
+. /home/luis/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
