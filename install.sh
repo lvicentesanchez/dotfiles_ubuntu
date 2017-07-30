@@ -4,9 +4,10 @@
 #
 #
 
-ln -s ~/.dotfiles/config/fish/config.fish ~/.config/fish/config.fish
-ln -s ~/.dotfiles/config/fish/config.fish.after ~/.config/fish/config.fish.after
-ln -s ~/.dotfiles/config/fish/config.fish.functions ~/.config/fish/config.fish.functions
+ln -s ~/.dotfiles/zshrc ~/.zshrc
+ln -s ~/.dotfiles/zshrc.after ~/.zshrc.after
+ln -s ~/.dotfiles/zprofile ~/.zprofile
+ln -s ~/.dotfiles/zprofile.after ~/.zprofile.after
 
 ln -s ~/.dotfiles/fonts ~/.fonts
 ln -s ~/.dotfiles/fonts.conf.d ~/.fonts.conf.d
@@ -14,11 +15,11 @@ sudo fc-cache -vf ~/.fonts
 
 ln -s ~/.dotfiles/dir_colors ~/.dir_colors
 
-mkdir -p ~/.local/share/nvim/site/autoload/
-ln -s ~/.dotfiles/local/share/nvim/site/autoload/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
+#mkdir -p ~/.local/share/nvim/site/autoload/
+#ln -s ~/.dotfiles/local/share/nvim/site/autoload/plug.vim ~/.local/share/nvim/site/autoload/plug.vim
 
-mkdir -p ~/.config/nvim
-ln -s ~/.dotfiles/config/nvim/init.vim ~/.config/nvim/init.vim
+#mkdir -p ~/.config/nvim
+#ln -s ~/.dotfiles/config/nvim/init.vim ~/.config/nvim/init.vim
 
-ln -s ~/.dotfiles/spacemacs ~/.spacemacs
+#ln -s ~/.dotfiles/spacemacs ~/.spacemacs
 
