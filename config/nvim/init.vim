@@ -30,7 +30,7 @@ syntax enable
 set backspace=2
 set noshelltemp
 set shortmess+=I
-
+set mouse=a
 set background=dark
 let g:solarized_termcolors=16
 colorscheme solarized
