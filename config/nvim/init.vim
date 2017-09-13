@@ -35,6 +35,12 @@ set background=dark
 let g:solarized_termcolors=16
 colorscheme solarized
 
+" Key mappings
+"
+imap jj <Esc>
+imap jk <Esc>
+imap kj <Esc>
+
 " Airline configuration
 "
 set laststatus=2
