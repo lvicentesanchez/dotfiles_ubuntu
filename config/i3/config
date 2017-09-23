@@ -14,7 +14,7 @@ set $browser google-chrome-beta
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace, FontAwesome 11
+font pango:monospace, FontAwesome 16
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -177,11 +177,12 @@ client.urgent           #002b36 #dc322f #fdf6e3 #002b36
 
 # Tweaks
 #
+exec --no-startup-id gnome-settings-daemon
 exec --no-startup-id redshift-gtk
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
-exec --no-startup-id feh --bg-scale -z ~/Pictures/Wallpapers/Cthulhu\ -\ 01.png
+exec --no-startup-id feh --bg-scale -z ~/Pictures/Wallpapers/Cthulhu\ -\ 02.png
 
 # Create Log out, Reboot, Poweroff bindings
 set $exit_mode "Exit (L)ogout, (R)eboot, (S)uspend, (P)oweroff" 
@@ -205,12 +206,12 @@ hide_edge_borders both
 
 # Keyboard layout
 #
-exec --no-startup-id setxkbmap us -option ctrl:swapcaps
+exec --no-startup-id setxkbmap us
 set $keyboard_mode "Keyboard (U)S, (G)B, E(S)"
 mode $keyboard_mode {
-    bindsym u exec "setxkbmap us -option ctrl:swapcaps && pkill -RTMIN+1 i3blocks", mode "default"
-    bindsym g exec "setxkbmap gb -option ctrl:swapcaps && pkill -RTMIN+1 i3blocks", mode "default"
-    bindsym e exec "setxkbmap es -option ctrl:swapcaps && pkill -RTMIN+1 i3blocks", mode "default"
+    bindsym u exec "setxkbmap us && pkill -RTMIN+1 i3blocks", mode "default"
+    bindsym g exec "setxkbmap gb && pkill -RTMIN+1 i3blocks", mode "default"
+    bindsym e exec "setxkbmap es && pkill -RTMIN+1 i3blocks", mode "default"
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
