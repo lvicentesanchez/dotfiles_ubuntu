@@ -184,6 +184,11 @@ exec --no-startup-id nm-applet
 exec --no-startup-id dunst -config ~/.config/dunst/dunstrc
 exec --no-startup-id feh --bg-scale -z ~/Pictures/Wallpapers/Cthulhu\ -\ 02.png
 
+# External monitor
+#
+bindsym $mod+m exec --no-startup-id xrandr --output DP1 --auto --left-of eDP1
+bindsym $mod+Shift+m exec --no-startup-id xrandr --output DP1 --off
+
 # Create Log out, Reboot, Poweroff bindings
 set $exit_mode "Exit (L)ogout, (R)eboot, (S)uspend, (P)oweroff" 
 mode $exit_mode {
@@ -228,5 +233,5 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% &&
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+3 i3blocks
 
 # Screen lock
-bindsym $mod+Shift+Delete exec --no-startup-id i3lock -f -e -u && xset dpms force off
+bindsym $mod+Delete exec --no-startup-id dm-tool lock
 
