@@ -1,6 +1,6 @@
 [global]
     #font = "Monospace 11"
-    font = "Meslo LG M DZ for Powerline 22"
+    font = "Meslo LG M DZ for Powerline 10"
     allow_markup = yes
     format = "<b>%s</b>\n%b"
     sort = yes
