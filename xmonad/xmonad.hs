@@ -22,7 +22,7 @@ main = do
             spawn "urxvtd -f -o -q"
         , normalBorderColor = myNormalBorderColor
         , focusedBorderColor = myFocusedBorderColor
-	, manageHook = manageDocks <+> manageHook def
+        , manageHook = manageDocks <+> manageHook def
         , layoutHook = myLayout --avoidStruts  $  layoutHook def
         , logHook = dynamicLogWithPP $ xmobarPP
                   { ppOutput = hPutStrLn xmproc
