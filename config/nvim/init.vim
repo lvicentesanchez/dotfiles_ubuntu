@@ -29,6 +29,7 @@ syntax enable
 
 set backspace=2
 set noshelltemp
+set number
 set shortmess+=I
 set mouse=a
 set background=dark
