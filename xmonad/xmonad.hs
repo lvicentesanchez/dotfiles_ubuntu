@@ -42,8 +42,6 @@ main = do
 
 myLayout = avoidStruts $ emptyBSP ||| Full
 
-myNormalBorderColor = "#002b36"
+myNormalBorderColor = "#c0c0c0"
 
-myFocusedBorderColor = "#657b83"
-
-xmobarTitleColor = "green"
+myFocusedBorderColor = "#b58900"
