@@ -1,3 +1,5 @@
+import System.IO
+import System.Posix.Env (putEnv)
 import XMonad
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -5,9 +7,9 @@ import XMonad.Layout.BinarySpacePartition
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.SpawnOnce(spawnOnce)
-import System.IO
 
 main = do
+    putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
     xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
     -- make sure to edit paths to xmobar and .xmobarrc to match your system.
     -- If xmobar is in your $PATH, with config ~/.xmobarrc you don't need the
@@ -42,6 +44,6 @@ main = do
 
 myLayout = avoidStruts $ emptyBSP ||| Full
 
-myNormalBorderColor = "#c0c0c0"
+myNormalBorderColor = "#657b83"
 
-myFocusedBorderColor = "#b58900"
+myFocusedBorderColor = "#c0c0c0"
