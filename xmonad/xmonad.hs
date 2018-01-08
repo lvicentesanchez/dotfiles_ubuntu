@@ -11,9 +11,6 @@ import XMonad.Util.SpawnOnce(spawnOnce)
 main = do
     putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
     xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
-    -- make sure to edit paths to xmobar and .xmobarrc to match your system.
-    -- If xmobar is in your $PATH, with config ~/.xmobarrc you don't need the
-    -- xmobar path or config file, use: xmproc <- spawnPipe "xmobar"  
     xmonad $ docks $ def
         { terminal = "urxvtc"
         , startupHook = do
