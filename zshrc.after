@@ -5,3 +5,6 @@ eval `dircolors ~/.dir_colors/dircolors`
 export GOPATH=~/development/tools/go/packages
 
 . /home/luis/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+eval $(thefuck --alias)
+

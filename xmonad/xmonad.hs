@@ -43,4 +43,4 @@ myLayout = avoidStruts $ emptyBSP ||| Full
 
 myNormalBorderColor = "#657b83"
 
-myFocusedBorderColor = "#c0c0c0"
+myFocusedBorderColor = "#b58900"
