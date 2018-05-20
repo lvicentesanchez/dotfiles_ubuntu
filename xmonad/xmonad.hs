@@ -12,13 +12,13 @@ main = do
     putEnv "_JAVA_AWT_WM_NONREPARENTING=1"
     xmproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
     xmonad $ docks $ def
-        { terminal = "urxvtc"
+        { terminal = "terminator"
         , startupHook = do
-            spawn "feh --bg-scale -z \"/home/luis/Pictures/Wallpapers/Cthulhu - 02.png\""            
-            spawn "stalonetray -c ~/.config/stalonetrayrc"
-            spawn "nm-applet"
-            spawn "redshift-gtk"
-            spawn "urxvtd -f -o -q"
+            spawnOnce "feh --bg-scale -z \"/home/luis/Pictures/Wallpapers/Cthulhu - 02.png\"" 
+            spawnOnce "stalonetray -c ~/.config/stalonetrayrc"
+            spawnOnce "nm-applet"
+            spawnOnce "redshift-gtk"
+            spawnOnce "setxkbmap -option compose:rctrl"
         , normalBorderColor = myNormalBorderColor
         , focusedBorderColor = myFocusedBorderColor
         , manageHook = manageDocks <+> manageHook def

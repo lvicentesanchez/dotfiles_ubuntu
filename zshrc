@@ -7,7 +7,7 @@ antigen bundle gitfast
 antigen bundle git-extras
 antigen bundle zsh-users/zsh-syntax-highlighting
 
-antigen theme fox
+antigen theme /home/luis/.dotfiles/zsh/themes/fox --no-local-clone
 
 antigen apply
 
@@ -18,6 +18,3 @@ fi
 if [ -f ~/.zprofile ]; then
     source ~/.zprofile
 fi
-
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/bin/vault vault
