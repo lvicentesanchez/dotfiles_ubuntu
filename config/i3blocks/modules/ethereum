@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-PATH=/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin
-
 ################################################################################
 #
 # CUSTOM PLUGIN SECTION
@@ -15,15 +13,9 @@ PATH=/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin
 ###
 ### Custom Defines
 ###
-appname="wifi"
-
-if [ ! -z ${BLOCK_INSTANCE+x} ]; then
-	iface="${BLOCK_INSTANCE}"
-else
-	iface="$( cat /proc/net/wireless 2>/dev/null | tail -1 | awk '{print $1}' | sed 's/://g' )"
-fi
-
-format=" {status_or_ip} ({ssid} {quality}%)"
+appname="ethereum"
+provider="${BLOCK_INSTANCE:-coinmarketcap}"
+format="E {usd}$"
 
 
 ###
@@ -45,16 +37,16 @@ force_good=0
 ### Additional arguments
 ###
 arg_params=(
-	"-i"
+	"-p"
 )
 arg_vars=(
-	"iface"
+	"provider"
 )
 arg_desc_val=(
-	"<iface>"
+	"<provider>"
 )
 arg_desc_long=(
-	"Specify the network interface"
+	"Specify the provider (coindesk or btce). This can also be set via i3blocks 'instance=' value. If neither is set, it will default to 'coindesk'."
 )
 
 
@@ -64,77 +56,22 @@ arg_desc_long=(
 
 # bash variable names
 format_vars=(
-	"ip"
-	"ip_nm"
-	"ip6"
-	"ip6_nm"
-	"mac"
-	"mtu"
-	"iface"
-	"status"
-	"status_or_ip"
-	"status_or_ip6"
-	"ssid"
-	"freq"
-	"freq_unit"
-	"tx_power"
-	"tx_power_unit"
-	"quality"
-	"signal"
-	"signal_unit"
-	"noise"
+	"usd"
 )
 
 # Format placeholders
 format_nodes=(
-	"{ip}"
-	"{ip_nm}"
-	"{ip6}"
-	"{ip6_nm}"
-	"{mac}"
-	"{mtu}"
-	"{iface}"
-	"{status}"
-	"{status_or_ip}"
-	"{status_or_ip6}"
-	"{ssid}"
-	"{freq}"
-	"{freq_unit}"
-	"{tx_power}"
-	"{tx_power_unit}"
-	"{quality}"
-	"{signal}"
-	"{signal_unit}"
-	"{noise}"
+	"{usd}"
 )
 
 # Format description (for help display)
 format_descs=(
-	"IPv4 address"
-	"IPv4 address including netmask"
-	"IPv6 address"
-	"IPv6 address including netmask"
-	"MAC address"
-	"MTU value"
-	"Network interface"
-	"Status (up, down, unknown, absent)"
-	"Status text if not up or IPv4 address"
-	"Status text if not up or IPv6 address"
-	"Wireless Network SSID name"
-	"Wireless frequency"
-	"Wireless requency unit"
-	"Wireless tx power"
-	"Wireless tx power unit"
-	"Wireless quality in percent"
-	"Wireless signal"
-	"Wireless signal unit"
-	"Wireless noise"
+	"Price in USD"
 )
 
 # Format examples (for help display)
 format_examples=(
-	"-f \" {status}: {ip} {ssid}\""
-	"-f \" {iface}: {status_or_ip6} {quality}\""
+	"-f \"E {usd} USD\""
 )
 
 
@@ -146,90 +83,69 @@ format_examples=(
 ### Evaluate disk space
 ###
 custom_action() {
-	if ! command -v ip > /dev/null 2>&1; then
-		echo "Error, ip binary not found, but required"
+	local cache="${HOME}/.cache/i3blocks-modules/"
+	local file="${cache}/${appname}.${provider}.cache"
+
+	if ! command -v curl >/dev/null 2>&1; then
+		echo "Error, curl is required for this module."
 		exit 1
 	fi
-	if ! command -v iwconfig > /dev/null 2>&1; then
-		echo "Error, iwconfig binary not found, but required"
+
+	if [ "${provider}" != "coinmarketcap" ]; then
+	#if [ "${provider}" != "btce" ] && [ "${provider}" != "coindesk" ]; then
+		echo "Error, invalid provider argument: ${provider}"
 		exit 1
 	fi
 
-	local _ip
-	local _iwconfig
+	# Caching directory for offline price
+	if [ ! -d "${cache}" ]; then
+		mkdir "${cache}"
+	fi
 
-	ip=
-	ip_nm=
-	ip6=
-	ip6_nm=
-	mac=
-	mtu=
-	status="unknown"
-	status_or_ip="${status}"
-	status_or_ip6="${status}"
+	###
+	### coindesk
+	###
+	#if [ "${provider}" = "coindesk" ]; then
+	#	# Get live data online
+	#	if json="$( curl -q http://api.coindesk.com/v2/bpi/currentprice.json 2>/dev/null )"; then
+	#		usd="$( echo "${json}" | grep -oE 'Dollar\",\"rate_float\":[.0-9]+' | grep -oE '[0-9]+' | head -1 )"
+	#		eur="$( echo "${json}" | grep -oE 'Euro\",\"rate_float\":[.0-9]+' | grep -oE '[0-9]+' | head -1 )"
+	#		# Cache results
+	#		printf "%s\n%s\n" "${usd}" "${eur}" > "${file}"
+	#	# Get cached data
+	#	else
+	#		if [ -f "${file}" ]; then
+	#			json="$( cat "${file}" )"
+	#			usd="$( echo "${json}" | head -1 )"
+	#			eur="$( echo "${json}" | tail -1 )"
+	#			format="[cache] ${format}"
+	#			force_warn=1
+	#		else
+	#			usd="????"
+	#			eur="????"
+	#			force_crit=1
+	#		fi
+	#	fi
+	###
+	### btce
+	###
+	if [ "${provider}" = "coinmarketcap" ]; then
+		# Get live data online
+		if json_usd="$( curl -q https://api.coinmarketcap.com/v1/ticker/ethereum/ 2>/dev/null )"; then
 
-	ssid=
-	freq=
-	freq_unit=
-	tx_power=
-	tx_power_unit=
-	quality=
-	signal=
-	signal_unit=
-	noise=
-
-	if [ ! -d "/sys/class/net/${iface}/" ] || [ ! -f "/sys/class/net/${iface}/operstate" ]; then
-
-		status="absent"
-		status_or_ip="${status}"
-		status_or_ip6="${status}"
-		force_crit=1
-
-	else
-
-		_ip="$( ip addr show "${iface}" 2>/dev/null )"
-
-		# No WIFI device
-		if ! _iwconfig="$( iwconfig "${iface}" 2>/dev/null )"; then
-			status="absent"
-			status_or_ip="${status}"
-			status_or_ip6="${status}"
-			force_crit=1
-
-		# WIFI device
+			usd="$( echo "${json_usd}" | grep 'price_usd' | grep -oE '[0-9]+' | head -1 )"
+			# Cache results
+			printf "%s\n%s\n" "${usd}" > "${file}"
+		# Get cached data
 		else
-			# Has WIFI, but is Not connected
-			if echo "${_iwconfig}" | grep -iq 'Not-Associated'; then
-				status="down"
-				status_or_ip="${status}"
-				status_or_ip6="${status}"
-				force_crit=1
-
-			# Has WIFI and is connected
+			if [ -f "${file}" ]; then
+				json="$( cat "${file}" )"
+				usd="$( echo "${json}" | head -1 )"
+				force_warn=1
+				format="[cache] ${format}"
 			else
-				ip="$(     echo "${_ip}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | head -1 )"
-				ip_nm="$(  echo "${_ip}" | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+/[0-9]+' | head -1 )"
-				ip6="$(    echo "${_ip}" | grep -oE 'inet6' | grep -oE '[0-9a-fA-F]*::.*/[0-9]+' | sed 's/\/.*//g' )"
-				ip6_nm="$( echo "${_ip}" | grep -oE 'inet6' | grep -oE '[0-9a-fA-F]*::.*/[0-9]+' || true)"
-				mac="$(    echo "${_ip}" | grep 'link/' | grep -oE '([0-9a-fA-F]{2}:)+[0-9a-fA-F]{2}' | head -1 )"
-				mtu="$(    echo "${_ip}" | grep -oE 'mtu\s*[0-9]+' | sed 's/mtu\s//g' )"
-
-				status="up"
-				status_or_ip="${ip}"
-				status_or_ip6="${ip6}"
-
-				ssid="$( echo "${_iwconfig}" | grep -oE 'ESSID:".*"' | sed 's/ESSID://g' | sed 's/"//g' )"
-				freq="$( echo "${_iwconfig}" | grep -ioE 'Frequency:[.0-9]+' | grep -oE '[.0-9]+' )"
-				freq_unit="Ghz"
-				tx_power="$( echo "${_iwconfig}" | grep -oE 'Tx-Power=[0-9]+' | sed 's/.*=//g' )"
-				tx_power_unit="dBm"
-				quality="$( awk -v cur="$(echo "${_iwconfig}"|grep -oE 'Link Quality=[/0-9]+'|grep -oE '[0-9]+'|head -1)" -v max="$(echo "${_iwconfig}"|grep -oE 'Link Quality=[/0-9]+'|grep -oE '[0-9]+'|tail -1)" 'BEGIN{printf("%0.f", cur*100/max)}')"
-				signal="$( echo "${_iwconfig}" | grep -ioE 'Signal level=[-0-9]+' | sed 's/.*=//g' )"
-				signal_unit="dBm"
-				noise="$( cat /proc/net/wireless | grep "${iface}" | awk '{print $5}' )"
-
-				force_good=1
-
+				usd="????"
+				force_crit=1
 			fi
 		fi
 	fi

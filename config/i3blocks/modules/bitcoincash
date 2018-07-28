@@ -13,9 +13,9 @@
 ###
 ### Custom Defines
 ###
-appname="battery"
-battery="${BLOCK_INSTANCE:-Battery 0}"
-format=" {percent}% ({time})"
+appname="bitcoincash"
+provider="${BLOCK_INSTANCE:-coinmarketcap}"
+format="BCH {usd}$"
 
 
 ###
@@ -37,16 +37,16 @@ force_good=0
 ### Additional arguments
 ###
 arg_params=(
-	"-b"
+	"-p"
 )
 arg_vars=(
-	"battery"
+	"provider"
 )
 arg_desc_val=(
-	"<battery name>"
+	"<provider>"
 )
 arg_desc_long=(
-	"Specify the battery name to grep for in 'acpi' command"
+	"Specify the provider (coindesk or btce). This can also be set via i3blocks 'instance=' value. If neither is set, it will default to 'coindesk'."
 )
 
 
@@ -56,35 +56,22 @@ arg_desc_long=(
 
 # bash variable names
 format_vars=(
-	time
-	percent
-	status
-	capacity
-	ucapacity
+	"usd"
 )
 
 # Format placeholders
 format_nodes=(
-	"{time}"
-	"{percent}"
-	"{status}"
-	"{capacity}"
-	"{ucapacity}"
+	"{usd}"
 )
 
 # Format description (for help display)
 format_descs=(
-	"BatteryTime remainng until empty or full"
-	"Battery percent"
-	"Battery status: charging, discharing, full, absent"
-	"Battery capacity"
-	"Battery capacity unit"
+	"Price in USD"
 )
 
 # Format examples (for help display)
 format_examples=(
-	"-f \" {time}\" \"{percent}\""
-	"-f \" {status}\""
+	"-f \"BCH {usd} USD\""
 )
 
 
@@ -96,29 +83,72 @@ format_examples=(
 ### Evaluate disk space
 ###
 custom_action() {
-	if ! command -v acpi >/dev/null 2>&1; then
-		echo "Error, binary acpi not found, but required."
+	local cache="${HOME}/.cache/i3blocks-modules/"
+	local file="${cache}/${appname}.${provider}.cache"
+
+	if ! command -v curl >/dev/null 2>&1; then
+		echo "Error, curl is required for this module."
 		exit 1
 	fi
 
-	local _output
-	if ! _output="$( acpi -i | grep "${battery}" )"; then
-		time=
-		percent=
-		status="absent"
-		capacity=
-		ucapacity=
-		force_crit=1
-		return
+	if [ "${provider}" != "coinmarketcap" ]; then
+	#if [ "${provider}" != "btce" ] && [ "${provider}" != "coindesk" ]; then
+		echo "Error, invalid provider argument: ${provider}"
+		exit 1
 	fi
 
-	_output="$( echo "${_output}" | sed 's/^.*:\s//g' )"
+	# Caching directory for offline price
+	if [ ! -d "${cache}" ]; then
+		mkdir "${cache}"
+	fi
 
-	time="$(     echo "${_output}" | head -1 | awk '{print $3}' | grep -oE '[0-9]+:[0-9]+' )"
-	percent="$(  echo "${_output}" | head -1 | awk '{print $2}' | grep -oE '[0-9]+' )"
-	status="$(   echo "${_output}" | head -1 | awk '{print $1}' | grep -oE '[a-zA-Z]+' | tr '[:upper:]' '[:lower:]' )"
-	capacity="$( echo "${_output}" | tail -1 | grep -oE 'capacity\s*[0-9]+' | head -1 | grep -oE '[0-9]+' )"
-	ucapacity="$(echo "${_output}" | tail -1 | grep -oE 'capacity\s*[0-9]+.*,' | sed 's/capacity\s*[0-9]*\s*//g' | sed 's/,//g' )"
+	###
+	### coindesk
+	###
+	#if [ "${provider}" = "coindesk" ]; then
+	#	# Get live data online
+	#	if json="$( curl -q http://api.coindesk.com/v2/bpi/currentprice.json 2>/dev/null )"; then
+	#		usd="$( echo "${json}" | grep -oE 'Dollar\",\"rate_float\":[.0-9]+' | grep -oE '[0-9]+' | head -1 )"
+	#		eur="$( echo "${json}" | grep -oE 'Euro\",\"rate_float\":[.0-9]+' | grep -oE '[0-9]+' | head -1 )"
+	#		# Cache results
+	#		printf "%s\n%s\n" "${usd}" "${eur}" > "${file}"
+	#	# Get cached data
+	#	else
+	#		if [ -f "${file}" ]; then
+	#			json="$( cat "${file}" )"
+	#			usd="$( echo "${json}" | head -1 )"
+	#			eur="$( echo "${json}" | tail -1 )"
+	#			format="[cache] ${format}"
+	#			force_warn=1
+	#		else
+	#			usd="????"
+	#			eur="????"
+	#			force_crit=1
+	#		fi
+	#	fi
+	###
+	### btce
+	###
+	if [ "${provider}" = "coinmarketcap" ]; then
+		# Get live data online
+		if json_usd="$( curl -q https://api.coinmarketcap.com/v1/ticker/bitcoin-cash/ 2>/dev/null )"; then
+
+			usd="$( echo "${json_usd}" | grep 'price_usd' | grep -oE '[0-9]+' | head -1 )"
+			# Cache results
+			printf "%s\n%s\n" "${usd}" > "${file}"
+		# Get cached data
+		else
+			if [ -f "${file}" ]; then
+				json="$( cat "${file}" )"
+				usd="$( echo "${json}" | head -1 )"
+				force_warn=1
+				format="[cache] ${format}"
+			else
+				usd="????"
+				force_crit=1
+			fi
+		fi
+	fi
 }
 
 

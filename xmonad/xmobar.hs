@@ -5,16 +5,15 @@ Config { font = "xft:Meslo LG M DZ for Powerline:size=10,FontAwesome:size=10"
        , sepChar = "%"
        , alignSep = "}{"
        , template = "%StdinReader% }{ <fc=#c0c0c0>|</fc> %coretemp% <fc=#c0c0c0>|</fc> %memory% <fc=#c0c0c0>|</fc> %bright% <fc=#c0c0c0>|</fc> %volume% <fc=#c0c0c0>|</fc> %battery% <fc=#c0c0c0>|</fc> %date% <fc=#c0c0c0>|</fc>"
---       , template = "%StdinReader% }{ <fc=#c0c0c0>|</fc> %coretemp% <fc=#c0c0c0>|</fc> %memory% <fc=#c0c0c0>|</fc> %bright% <fc=#c0c0c0>|</fc> %pulse:Master% <fc=#c0c0c0>|</fc> %battery% <fc=#c0c0c0>|</fc> %date% <fc=#c0c0c0>|</fc>"
        , commands = [ Run StdinReader
 
                     , Run CoreTemp       [ "--template" , "Temp: <core0>°C <core1>°C <core2>°C <core3>°C"
-                                            , "--Low"      , "40"        -- units: °C
-                                            , "--High"     , "80"        -- units: °C
-                                            , "--low"      , "#859900"
-                                            , "--normal"   , "#b58900"
-                                            , "--high"     , "#dc322f"
-                                            ] 50
+                                             , "--Low"      , "40"        -- units: °C
+                                             , "--High"     , "80"        -- units: °C
+                                             , "--low"      , "#859900"
+                                             , "--normal"   , "#b58900"
+        	                             , "--high"     , "#dc322f"
+                                             ] 50
 
                     , Run Memory         [ "--template" ,"Mem: <usedratio>%"
                                             , "--Low"      , "20"        -- units: %
@@ -43,14 +42,6 @@ Config { font = "xft:Meslo LG M DZ for Powerline:size=10,FontAwesome:size=10"
                                             ] 30
                     , Run Com "/bin/sh"  [ "-c", "~/.xmonad/volume.sh"
                                             ] "volume" 10
---                    , Run Volume         "pulse" "Master"
---                                            [ "--template" , "<status> <volume>%"
---                                            , "--"
---                                            , "--on"        , ""
---                                            , "--onc"       , "#859900"
---                                            , "--off"       , ""
---                                            , "--offc"      , "#dc322f"
---                                            ] 10
 
                     , Run Brightness     [ "--template"   , " <percent>%"
                                             , "--"
