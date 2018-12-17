@@ -1,3 +1,4 @@
+import Graphics.X11.ExtraTypes.XF86
 import System.IO
 import System.Posix.Env (putEnv)
 import XMonad
@@ -37,6 +38,11 @@ main = do
         , ((mod4Mask, xK_m)              , spawn "xrandr --output DP1 --auto --primary --left-of eDP1")
         , ((mod4Mask .|. shiftMask, xK_m), spawn "xrandr --output DP1 --off")
         , ((mod4Mask .|. shiftMask, xK_l), spawn "dm-tool lock")
+        , ((0, xF86XK_MonBrightnessUp)   , spawn "xbacklight -inc 5")
+        , ((0, xF86XK_MonBrightnessDown) , spawn "xbacklight -dec 5")
+        , ((0, xF86XK_AudioRaiseVolume)  , spawn "pactl set-sink-volume 0 +5%")
+        , ((0, xF86XK_AudioLowerVolume)  , spawn "pactl set-sink-volume 0 -5%")
+        , ((0, xF86XK_AudioMute)         , spawn "pactl set-sink-mute 0 toggle")
         ]
 
 myLayout = avoidStruts $ emptyBSP ||| Full

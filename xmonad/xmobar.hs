@@ -13,7 +13,7 @@ Config { font = "xft:Meslo LG M DZ for Powerline:size=10,FontAwesome:size=10"
                                              , "--low"      , "#859900"
                                              , "--normal"   , "#b58900"
         	                             , "--high"     , "#dc322f"
-                                             ] 50
+                                             ] 30
 
                     , Run Memory         [ "--template" ,"Mem: <usedratio>%"
                                             , "--Low"      , "20"        -- units: %
@@ -21,9 +21,9 @@ Config { font = "xft:Meslo LG M DZ for Powerline:size=10,FontAwesome:size=10"
                                             , "--low"      , "#859900"
                                             , "--normal"   , "#b58900"
                                             , "--high"     , "#dc322f"
-                                            ] 10
+                                            ] 30
 
-                    , Run Date           "%F %H:%M" "date" 10
+                    , Run Date           "%F %H:%M" "date" 30
 
                     , Run Battery        [ "--template" , "Batt: <acstatus>"
                                             , "--Low"      , "10"        -- units: %
@@ -41,11 +41,11 @@ Config { font = "xft:Meslo LG M DZ for Powerline:size=10,FontAwesome:size=10"
 
                                             ] 30
                     , Run Com "/bin/sh"  [ "-c", "~/.xmonad/volume.sh"
-                                            ] "volume" 10
+                                            ] "volume" 30
 
                     , Run Brightness     [ "--template"   , " <percent>%"
                                             , "--"
                                             , "--device"     , "intel_backlight"
-                                            ] 50
+                                            ] 30
                     ]
        }
