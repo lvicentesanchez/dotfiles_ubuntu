@@ -9,12 +9,6 @@ eval $(thefuck --alias)
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/bin/vault vault
 
-init-aws-credentials() {
-  /home/luis/.aws/tools/Python/aws_recipes_init_sts_session.py --profile default
-  # boto2 reads in the aws_security_token variable instead so need to duplicate the token
-  sed -i '/aws_security_token/d;/aws_session/H;/aws_session/G;s/aws_session/aws_security/g2' /home/luis/.aws/credentials
-}
-
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /home/luis/.cache/pacaur/nodejs-serverless/pkg/nodejs-serverless/usr/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/luis/.cache/pacaur/nodejs-serverless/pkg/nodejs-serverless/usr/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
