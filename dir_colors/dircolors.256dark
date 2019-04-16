@@ -10,6 +10,9 @@
 
 # Term Section
 TERM Eterm
+TERM alacritty
+TERM alacritty+common
+TERM alacritty-direct
 TERM ansi
 TERM color-xterm
 TERM con132x25
