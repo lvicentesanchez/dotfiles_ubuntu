@@ -22,13 +22,13 @@
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
-       evil-goggles      ; display visual hints when editing in evil
        ;;fill-column       ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
        ;;indent-guides     ; highlighted indent columns
        modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
        neotree           ; a project drawer, like NERDTree for vim
+       ophints           ; highlight the region an operation acts on
        treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
@@ -116,7 +116,9 @@
         +babel           ; running code in org
         +capture         ; org-capture in and outside of Emacs
         +export          ; Exporting org to whatever you want
-        +present)        ; Emacs for presentations
+        +habit           ; Keep track of your habits
+        +present         ; Emacs for presentations
+        +protocol)       ; Support for org-protocol:// links
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
