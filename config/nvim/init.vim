@@ -68,3 +68,6 @@ let g:racer_experimental_completer = 1
 
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
+" Vim-scala
+"
+au BufRead,BufNewFile *.sbt set filetype=scala

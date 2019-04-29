@@ -1,0 +1,12 @@
+// vim:    ~/.vim/coc-settings.json
+// neovim: ~/.config/nvim/coc-settings.json
+{
+  "languageserver": {
+    "metals": {
+      "command": "~/.local/bin/metals-vim",
+      "rootPatterns": ["build.sbt"],
+      "filetypes": ["scala", "sbt"]
+    }
+  }
+}
+
