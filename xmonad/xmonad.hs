@@ -15,7 +15,7 @@ main = do
     xmonad $ docks $ def
         { terminal = "kitty --single-instance"
         , startupHook = do
-            spawnOnce "feh --bg-scale -z \"/home/luis/Pictures/Wallpapers/Cyberpunk - 08.jpg\"" 
+            spawnOnce "feh --bg-scale -z \"/home/luis/Pictures/Wallpapers/Cyberpunk - 10.jpg\"" 
             spawnOnce "stalonetray -c ~/.config/stalonetrayrc"
             spawnOnce "nm-applet"
             spawnOnce "redshift-gtk"
