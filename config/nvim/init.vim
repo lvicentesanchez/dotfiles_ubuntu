@@ -6,7 +6,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'ekalinin/Dockerfile.vim'
 Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'derekwyatt/vim-scala'
-Plug 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
