@@ -1,6 +1,6 @@
 Config { font = "xft:Meslo LG M DZ for Powerline:size=10,FontAwesome:size=10"
-       , bgColor = "#002b36"
-       , fgColor = "#657b83"
+       , bgColor = "#1d2021"
+       , fgColor = "#d5c4a1"
        , position = Static { xpos = 0 , ypos = 0, width = 3520, height = 32 }
        , sepChar = "%"
        , alignSep = "}{"
@@ -10,17 +10,17 @@ Config { font = "xft:Meslo LG M DZ for Powerline:size=10,FontAwesome:size=10"
                     , Run CoreTemp       [ "--template" , "Temp: <core0>°C <core1>°C <core2>°C <core3>°C"
                                              , "--Low"      , "40"        -- units: °C
                                              , "--High"     , "80"        -- units: °C
-                                             , "--low"      , "#859900"
-                                             , "--normal"   , "#b58900"
-        	                             , "--high"     , "#dc322f"
+                                             , "--low"      , "#b8bb26"
+                                             , "--normal"   , "#fabd2f"
+        	                             , "--high"     , "#ff5d38"
                                              ] 30
 
                     , Run Memory         [ "--template" ,"Mem: <usedratio>%"
                                             , "--Low"      , "20"        -- units: %
                                             , "--High"     , "90"        -- units: %
-                                            , "--low"      , "#859900"
-                                            , "--normal"   , "#b58900"
-                                            , "--high"     , "#dc322f"
+                                            , "--low"      , "#b8bb26"
+                                            , "--normal"   , "#fabd2f"
+                                            , "--high"     , "#ff5d38"
                                             ] 30
 
                     , Run Date           "%F %H:%M" "date" 30
@@ -28,16 +28,16 @@ Config { font = "xft:Meslo LG M DZ for Powerline:size=10,FontAwesome:size=10"
                     , Run Battery        [ "--template" , "Batt: <acstatus>"
                                             , "--Low"      , "10"        -- units: %
                                             , "--High"     , "80"        -- units: %
-                                            , "--low"      , "#dc322f"
-                                            , "--normal"   , "#b58900"
-                                            , "--high"     , "#859900"
+                                            , "--low"      , "#ff5d38"
+                                            , "--normal"   , "#fabd2f"
+                                            , "--high"     , "#b8bb26"
                                             , "--" -- battery specific options
                                                     -- discharging status
                                                     , "-o"	, "<left>% (<timeleft>)"
                                                     -- AC "on" status
-                                                    , "-O"	, "<fc=#b58900>Charging (<timeleft>)</fc>"
+                                                    , "-O"	, "<fc=#fabd2f>Charging (<timeleft>)</fc>"
                                                     -- charged status
-                                                    , "-i"	, "<fc=#859900>Charged</fc>"
+                                                    , "-i"	, "<fc=#b8bb26>Charged</fc>"
 
                                             ] 30
                     , Run Com "/bin/sh"  [ "-c", "~/.xmonad/volume.sh"

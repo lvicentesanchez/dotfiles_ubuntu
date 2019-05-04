@@ -4,13 +4,17 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'ekalinin/Dockerfile.vim'
-Plug 'ensime/ensime-vim', { 'do': ':UpdateRemotePlugins' }
 Plug 'derekwyatt/vim-scala'
+Plug 'ErichDonGubler/vim-sublime-monokai'
+Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'phanviet/vim-monokai-pro'
 Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
 Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'tomasr/molokai'
+Plug 'sickill/vim-monokai'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -34,8 +38,9 @@ set number
 set shortmess+=I
 set mouse=a
 set background=dark
-let g:solarized_termcolors=16
-colorscheme solarized
+let guitermcolors=1
+let g:gruvbox_contrast_dark="hard"
+colorscheme gruvbox
 
 " Key mappings
 "
@@ -46,7 +51,7 @@ imap kj <Esc>
 " Airline configuration
 "
 set laststatus=2
-let g:airline_theme='solarized'
+let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts=1
 
 " Denite

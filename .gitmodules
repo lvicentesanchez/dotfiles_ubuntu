@@ -4,3 +4,6 @@
 [submodule "colors/dircolors-solarized"]
 	path = colors/dircolors-solarized
 	url = git@github.com:seebi/dircolors-solarized.git
+[submodule "colors/base16-kitty"]
+	path = colors/base16-kitty
+	url = https://github.com/kdrag0n/base16-kitty

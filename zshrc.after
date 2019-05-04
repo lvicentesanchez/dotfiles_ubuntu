@@ -1,14 +1,22 @@
 DEFAULT_USER="luis"
 
-eval `dircolors ~/.dir_colors/dircolors`
+. ~/.dir_colors/gruvbox_256palette.sh
+
+#eval `dircolors ~/.dir_colors/dircolors.gruvbox`
 
 . /home/luis/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 eval $(thefuck --alias)
 
+autoload -U +X compinit
+fpath=($HOME/.bloop/zsh $fpath)
+compinit
+
 autoload -U +X bashcompinit && bashcompinit
+
 complete -o nospace -C /usr/bin/vault vault
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /home/luis/.cache/pacaur/nodejs-serverless/pkg/nodejs-serverless/usr/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/luis/.cache/pacaur/nodejs-serverless/pkg/nodejs-serverless/usr/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
+

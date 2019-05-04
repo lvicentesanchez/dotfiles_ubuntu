@@ -15,11 +15,11 @@ main = do
     xmonad $ docks $ def
         { terminal = "kitty --single-instance"
         , startupHook = do
-            spawnOnce "feh --bg-scale -z \"/home/luis/Pictures/Wallpapers/Cyberpunk - 10.jpg\"" 
+            spawnOnce "feh --bg-scale -z \"/home/luis/Pictures/Wallpapers/Cyberpunk - 11.png\"" 
             spawnOnce "stalonetray -c ~/.config/stalonetrayrc"
             spawnOnce "nm-applet"
             spawnOnce "redshift-gtk"
-            spawnOnce "setxkbmap -option compose:rctrl"
+            spawnOnce "setxkbmap -option compose:ralt"
             spawnOnce "light-locker" 
         , normalBorderColor = myNormalBorderColor
         , focusedBorderColor = myFocusedBorderColor
@@ -27,10 +27,10 @@ main = do
         , layoutHook = myLayout --avoidStruts  $  layoutHook def
         , logHook = dynamicLogWithPP $ xmobarPP
                   { ppOutput = hPutStrLn xmproc
-                  , ppTitle = xmobarColor "#657b83" "" . shorten 100   
-                  , ppCurrent = xmobarColor "#c0c0c0" "" . wrap "" ""
-                  , ppSep     = xmobarColor "#c0c0c0" "" " | "
-                  , ppUrgent  = xmobarColor "#ff69b4" ""
+                  , ppTitle = xmobarColor "#fe8019" "" . shorten 100   
+                  , ppCurrent = xmobarColor "#fe8019" "" . wrap "" ""
+                  , ppSep     = xmobarColor "#d5c4a1" "" " | "
+                  , ppUrgent  = xmobarColor "#fb4934" ""
                   }
         , modMask = mod4Mask     
         } `additionalKeys`
@@ -38,7 +38,6 @@ main = do
         , ((mod4Mask, xK_d)              , spawn "rofi -bw 1 -show drun")
         , ((mod4Mask, xK_m)              , spawn "xrandr --output DP-1 --auto --primary --left-of eDP-1")
         , ((mod4Mask .|. shiftMask, xK_m), spawn "xrandr --output DP-1 --off")
-        --, ((mod4Mask .|. shiftMask, xK_l), spawn "dm-tool lock")
         , ((mod4Mask .|. shiftMask, xK_l), spawn "light-locker-command -l")
         , ((0, xF86XK_MonBrightnessUp)   , spawn "light -A 5")
         , ((0, xF86XK_MonBrightnessDown) , spawn "light -U 5")
@@ -49,6 +48,6 @@ main = do
 
 myLayout = avoidStruts $ emptyBSP ||| Full
 
-myNormalBorderColor = "#657b83"
+myNormalBorderColor = "#665c54"
 
 myFocusedBorderColor = "#b58900"
