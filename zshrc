@@ -1,15 +1,13 @@
-source /usr/share/zsh/share/antigen.zsh
+source <(antibody init)
 
-antigen use oh-my-zsh
+export ZSH="$(antibody home)"/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh
 
-antigen bundle docker
-antigen bundle gitfast
-antigen bundle git-extras
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-antigen theme /home/luis/.dotfiles/zsh/themes/fox --no-local-clone
-
-antigen apply
+antibody bundle robbyrussell/oh-my-zsh
+antibody bundle robbyrussell/oh-my-zsh path:plugins/docker
+antibody bundle robbyrussell/oh-my-zsh path:plugins/gitfast
+antibody bundle robbyrussell/oh-my-zsh path:plugins/git-extras
+antibody bundle zsh-users/zsh-syntax-highlighting
+antibody bundle /home/luis/.dotfiles/zsh/themes/fox
 
 if [ -f ~/.zshrc.after ]; then
     source ~/.zshrc.after
