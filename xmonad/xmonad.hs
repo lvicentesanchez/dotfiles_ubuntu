@@ -15,12 +15,13 @@ main = do
     xmonad $ docks $ def
         { terminal = "kitty --single-instance"
         , startupHook = do
+            spawnOnce "compton -f -D 10 --backend glx --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --use-damage --vsync"
             spawnOnce "feh --bg-scale -z \"/home/luis/Pictures/Wallpapers/Cyberpunk - 11.png\"" 
-            spawnOnce "stalonetray -c ~/.config/stalonetrayrc"
+            spawnOnce "light-locker" 
             spawnOnce "nm-applet"
             spawnOnce "redshift-gtk"
             spawnOnce "setxkbmap -option compose:ralt"
-            spawnOnce "light-locker" 
+            spawnOnce "stalonetray -c ~/.config/stalonetrayrc"
         , normalBorderColor = myNormalBorderColor
         , focusedBorderColor = myFocusedBorderColor
         , manageHook = manageDocks <+> manageHook def
@@ -50,4 +51,4 @@ myLayout = avoidStruts $ emptyBSP ||| Full
 
 myNormalBorderColor = "#665c54"
 
-myFocusedBorderColor = "#b58900"
+myFocusedBorderColor = "#fe8019"
