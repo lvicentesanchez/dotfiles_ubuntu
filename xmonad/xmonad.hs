@@ -15,7 +15,7 @@ main = do
     xmonad $ docks $ def
         { terminal = "kitty --single-instance"
         , startupHook = do
-            spawnOnce "compton -f -D 10 --backend glx --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --use-damage --vsync"
+            spawnOnce "compton -bCfG -D 10 --backend glx --glx-no-rebind-pixmap --glx-no-stencil --unredir-if-possible --use-damage --vsync"
             spawnOnce "feh --bg-scale -z \"/home/luis/Pictures/Wallpapers/Cyberpunk - 11.png\"" 
             spawnOnce "light-locker" 
             spawnOnce "nm-applet"
