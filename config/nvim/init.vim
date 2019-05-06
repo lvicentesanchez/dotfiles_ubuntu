@@ -40,9 +40,16 @@ set shortmess+=I
 set mouse=a
 set background=dark
 "let guitermcolors=1
-colorscheme gruvbox
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_termcolors = 256
+colorscheme gruvbox
+
+" Neovim-GTK
+"
+if exists('g:GtkGuiLoaded')
+  call rpcnotify(1, 'Gui', 'Option', 'Tabline', 0)
+  call rpcnotify(1, 'Gui', 'Font', 'Fira Code 12')
+endif
 
 " Key mappings
 "
@@ -71,6 +78,23 @@ nnoremap <leader>b :<C-u>Denite buffer<CR>
 "let g:deoplete#enable_at_startup=1
 "au BufRead,BufNewFile *.sbt let b:deoplete_disable_auto_complete = 0
 "au BufRead,BufNewFile *.scala let b:deoplete_disable_auto_complete = 0
+
+"fzf.vim
+"
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " Racer
 "
