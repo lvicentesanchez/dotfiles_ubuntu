@@ -1,7 +1,6 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here
-(require 'doom-themes)
 
 ;; Global settings (defaults)
 (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
@@ -43,3 +42,4 @@
   ;; Optional - enable lsp-scala automatically in scala files
   :hook (scala-mode . lsp)
   :init (setq lsp-scala-server-command "~/.local/bin/metals-emacs"))
+

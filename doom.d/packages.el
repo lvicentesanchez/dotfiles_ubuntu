@@ -7,5 +7,6 @@
 ;; (package! builtin-package :disable t)
 
 (package! lsp-scala)
+(package! doom-themes)
 (package! sbt-mode)
 (package! scala-mode)
