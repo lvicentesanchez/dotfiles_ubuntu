@@ -10,11 +10,8 @@ Plug 'morhetz/gruvbox'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 Plug 'racer-rust/vim-racer'
 Plug 'rust-lang/rust.vim'
-Plug 'Shougo/denite.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
 " Initialize plugin system
 "
@@ -39,7 +36,6 @@ set number
 set shortmess+=I
 set mouse=a
 set background=dark
-"let guitermcolors=1
 let g:gruvbox_contrast_dark="hard"
 let g:gruvbox_termcolors = 256
 colorscheme gruvbox
@@ -67,20 +63,15 @@ let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
-" Denite
+" Fzf.vim
 "
-nnoremap <leader>r :<C-u>Denite -mode=normal file/rec<CR>
-nnoremap <leader>f :<C-u>Denite file<CR>
-nnoremap <leader>b :<C-u>Denite buffer<CR>
+command! Files call fzf#run(fzf#wrap({'source': 'pt -f -l --nocolor -g=""'}))
 
-" Deoplete
-"
-"let g:deoplete#enable_at_startup=1
-"au BufRead,BufNewFile *.sbt let b:deoplete_disable_auto_complete = 0
-"au BufRead,BufNewFile *.scala let b:deoplete_disable_auto_complete = 0
+nnoremap <silent> <leader>fb :Buffers<CR>
+nnoremap <silent> <leader>ff :Files<CR>
+nnoremap <silent> <leader>fg :GFiles<CR>
+nnoremap <silent> <leader>fw :Windows<CR>
 
-"fzf.vim
-"
 let g:fzf_colors =
 \ { 'fg':      ['fg', 'Normal'],
   \ 'bg':      ['bg', 'Normal'],
