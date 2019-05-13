@@ -28,8 +28,8 @@ main = do
         , layoutHook = myLayout --avoidStruts  $  layoutHook def
         , logHook = dynamicLogWithPP $ xmobarPP
                   { ppOutput = hPutStrLn xmproc
-                  , ppTitle = xmobarColor "#fe8019" "" . shorten 100   
-                  , ppCurrent = xmobarColor "#fe8019" "" . wrap "" ""
+                  , ppTitle = xmobarColor "#fabd2f" "" . shorten 100
+                  , ppCurrent = xmobarColor "#fabd2fq" "" . wrap "" ""
                   , ppSep     = xmobarColor "#d5c4a1" "" " | "
                   , ppUrgent  = xmobarColor "#fb4934" ""
                   }
@@ -49,6 +49,6 @@ main = do
 
 myLayout = avoidStruts $ emptyBSP ||| Full
 
-myNormalBorderColor = "#665c54"
+myNormalBorderColor = "#d5c4a1"
 
-myFocusedBorderColor = "#fe8019"
+myFocusedBorderColor = "#fabd2f"
