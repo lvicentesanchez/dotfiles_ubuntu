@@ -19,9 +19,10 @@ main = do
             spawnOnce "feh --bg-scale -z \"/home/luis/Pictures/Wallpapers/Cyberpunk - 11.png\"" 
             spawnOnce "light-locker" 
             spawnOnce "nm-applet"
-            spawnOnce "redshift-gtk"
+            spawnOnce "redshift-gtk -c ~/.config/redshift.xmonad.conf"
             spawnOnce "setxkbmap -option compose:ralt"
             spawnOnce "stalonetray -c ~/.config/stalonetrayrc"
+	    spawnOnce "xsetroot -cursor_name left_ptr"
         , normalBorderColor = myNormalBorderColor
         , focusedBorderColor = myFocusedBorderColor
         , manageHook = manageDocks <+> manageHook def
@@ -29,7 +30,7 @@ main = do
         , logHook = dynamicLogWithPP $ xmobarPP
                   { ppOutput = hPutStrLn xmproc
                   , ppTitle = xmobarColor "#fabd2f" "" . shorten 100
-                  , ppCurrent = xmobarColor "#fabd2fq" "" . wrap "" ""
+                  , ppCurrent = xmobarColor "#fabd2f" "" . wrap "" ""
                   , ppSep     = xmobarColor "#d5c4a1" "" " | "
                   , ppUrgent  = xmobarColor "#fb4934" ""
                   }
@@ -40,8 +41,8 @@ main = do
         , ((mod4Mask, xK_m)              , spawn "xrandr --output DP-1 --auto --primary --left-of eDP-1")
         , ((mod4Mask .|. shiftMask, xK_m), spawn "xrandr --output DP-1 --off")
         , ((mod4Mask .|. shiftMask, xK_l), spawn "light-locker-command -l")
-        , ((0, xF86XK_MonBrightnessUp)   , spawn "light -A 5")
-        , ((0, xF86XK_MonBrightnessDown) , spawn "light -U 5")
+        , ((0, xF86XK_MonBrightnessUp)   , spawn "brillo -A 5")
+        , ((0, xF86XK_MonBrightnessDown) , spawn "brillo -U 5")
         , ((0, xF86XK_AudioRaiseVolume)  , spawn "pactl set-sink-volume 0 +5%")
         , ((0, xF86XK_AudioLowerVolume)  , spawn "pactl set-sink-volume 0 -5%")
         , ((0, xF86XK_AudioMute)         , spawn "pactl set-sink-mute 0 toggle")
