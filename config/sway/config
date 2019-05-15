@@ -10,7 +10,7 @@
 set $mod Mod4
 set $browser firefox-beta
 
-font pango:Fira Code,FontAwesome 20
+font pango:Fira Code,Font Awesome 5 Free 20
 
 # Home row direction keys, like vim
 set $left h

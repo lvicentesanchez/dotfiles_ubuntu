@@ -1,10 +1,10 @@
-Config { font = "xft:Meslo LG M DZ for Powerline:size=10,FontAwesome:size=10"
+Config { font = "xft:Fira Code:size=11,Font Awesome 5 Free:size=11"
        , bgColor = "#1d2021"
        , fgColor = "#d5c4a1"
        , position = Static { xpos = 0 , ypos = 0, width = 3520, height = 32 }
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ <fc=#c0c0c0>|</fc> %coretemp% <fc=#c0c0c0>|</fc> %memory% <fc=#c0c0c0>|</fc> %bright% <fc=#c0c0c0>|</fc> %volume% <fc=#c0c0c0>|</fc> %battery% <fc=#c0c0c0>|</fc> %date% <fc=#c0c0c0>|</fc>"
+       , template = "%StdinReader% }{ <fc=#c0c0c0>|</fc> %coretemp% <fc=#c0c0c0>|</fc> %memory% <fc=#c0c0c0>|</fc> %bright% <fc=#c0c0c0>|</fc> %pulse:Master% <fc=#c0c0c0>|</fc> %battery% <fc=#c0c0c0>|</fc> %date% <fc=#c0c0c0>|</fc>"
        , commands = [ Run StdinReader
 
                     , Run CoreTemp       [ "--template" , "Temp: <core0>°C <core1>°C <core2>°C <core3>°C"
@@ -40,8 +40,16 @@ Config { font = "xft:Meslo LG M DZ for Powerline:size=10,FontAwesome:size=10"
                                                     , "-i"	, "<fc=#b8bb26>Charged</fc>"
 
                                             ] 30
-                    , Run Com "/bin/sh"  [ "-c", "~/.xmonad/volume.sh"
-                                            ] "volume" 30
+
+                    , Run Volume "pulse" "Master"
+                                         [ "--template" , "<status> <volume>%"
+                                            , "--"
+                                            , "--on"        , " "
+                                            , "--onc"       , "#859900"
+                                            , "--off"       , ""
+                                            , "--offc"      , "#dc322f"
+                                            ] 30
+
 
                     , Run Brightness     [ "--template"   , " <percent>%"
                                             , "--"
