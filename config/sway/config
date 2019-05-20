@@ -81,7 +81,7 @@ input "1739:31251:DLL07BF:01_06CB:7A13_Touchpad" {
     bindsym $mod+Return exec $term
 
     # kill focused window
-    bindsym $mod+Shift+q kill
+    bindsym $mod+Shift+c kill
 
     # start your launcher
     bindsym $mod+d exec $menu
@@ -94,11 +94,20 @@ input "1739:31251:DLL07BF:01_06CB:7A13_Touchpad" {
     floating_modifier $mod normal
 
     # reload the configuration file
-    bindsym $mod+Shift+c reload
+    bindsym $mod+q reload
 
-    # exit sway (logs you out of your Wayland session)
-    #bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
-    bindsym $mod+shift+e exec swaymsg exit
+    # Log out, ,Poweroff bindings
+    set $exit_mode "Exit (L)ogout, (R)eboot, (P)oweroff"
+
+    mode $exit_mode {
+            bindsym $mod+l exec swaymsg exit
+            bindsym $mod+r exec systemctl reboot
+            bindsym $mod+p exec systemctl poweroff
+            bindsym Escape mode "default"
+    }
+
+    bindsym $mod+Shift+q mode $exit_mode
+
 #
 # Moving around:
 #
@@ -210,6 +219,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
 bindsym $mod+r mode "resize"
 
 #
@@ -294,17 +304,20 @@ bindsym XF86MonBrightnessUp exec brillo -A 5 && pkill -RTMIN+2 i3blocks
 bindsym XF86MonBrightnessDown exec brillo -U 5 && pkill -RTMIN+2 i3blocks
 
 # Sound control
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% && pkill -RTMIN+3 i3blocks
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% && pkill -RTMIN+3 i3blocks
-bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle && pkill -RTMIN+3 i3blocks
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pactl list short sinks | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1) +5% && pkill -RTMIN+3 i3blocks
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pactl list short sinks | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1) -5% && pkill -RTMIN+3 i3blocks
+bindsym XF86AudioMute exec pactl set-sink-mute $(pactl list short sinks | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1) toggle && pkill -RTMIN+3 i3blocks
 
 new_window pixel 1
 
 # Startup programs
 #
-exec --no-startup-id nm-applet
 exec --no-startup-id redshift -c ~/.config/redshift.sway.conf
 exec --no-startup-id xrdb -load ~/.Xresources
 #
+
+# move focused workspace
+bindsym $mod+Shift+comma move workspace to output left,mode "default"
+bindsym $mod+Shift+period move workspace to output right,mode "default"
 
 include /etc/sway/config.d/*
