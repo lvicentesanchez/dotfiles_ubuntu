@@ -43,11 +43,11 @@
   :hook (scala-mode . lsp)
   :init (setq lsp-scala-server-command "~/.local/bin/metals-emacs"))
 
-(after! lsp
-  (setq 
-    lsp-ui-doc-enable nil))
+;;(after! lsp
+;;  (setq 
+;;    lsp-ui-doc-enable nil))
 
-(after! imenu-list
-  (set-popup-rule! "^\\*Ilist"
-    :side 'left :size 35 :quit nil :select nil :ttl 0))
+;;(after! imenu-list
+;;  (set-popup-rule! "^\\*Ilist"
+;;    :side 'left :size 35 :quit nil :select nil :ttl 0))
 

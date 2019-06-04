@@ -26,7 +26,7 @@ set $menu "rofi -show drun"
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg "/home/luis/Pictures/Wallpapers/Cyberpunk - 11.png" fill
+output "*" bg "/home/luis/Pictures/Wallpapers/Cyberpunk - 11.png" fill
 
 #
 # Example configuration:
@@ -53,6 +53,10 @@ output * bg "/home/luis/Pictures/Wallpapers/Cyberpunk - 11.png" fill
 #
 # Example configuration:
 #
+input "1:1:AT_Translated_Set_2_keyboard" {
+    xkb_options compose:ralt
+}
+
 input "1149:4128:Kensington______Kensington_Expert_Mouse" {
     accel_profile adaptive
     natural_scroll disabled
@@ -97,13 +101,14 @@ input "1739:31251:DLL07BF:01_06CB:7A13_Touchpad" {
     bindsym $mod+q reload
 
     # Log out, ,Poweroff bindings
-    set $exit_mode "Exit (L)ogout, (R)eboot, (P)oweroff"
+    set $exit_mode "Exit (L)ogout, (P)oweroff, (R)eboot, (S)uspend"
 
     mode $exit_mode {
             bindsym $mod+l exec swaymsg exit
-            bindsym $mod+r exec systemctl reboot
             bindsym $mod+p exec systemctl poweroff
-            bindsym Escape mode "default"
+            bindsym $mod+r exec systemctl reboot
+            bindsym $mod+s exec systemctl suspend
+	    bindsym Escape mode "default"
     }
 
     bindsym $mod+Shift+q mode $exit_mode
@@ -308,11 +313,12 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume $(pactl list short sinks
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume $(pactl list short sinks | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1) -5% && pkill -RTMIN+3 i3blocks
 bindsym XF86AudioMute exec pactl set-sink-mute $(pactl list short sinks | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,' | head -n 1) toggle && pkill -RTMIN+3 i3blocks
 
-new_window pixel 1
+default_border pixel 1
 
 # Startup programs
 #
 exec --no-startup-id redshift -c ~/.config/redshift.sway.conf
+exec --no-startup-id setxkbmap -option compose:ralt
 exec --no-startup-id xrdb -load ~/.Xresources
 #
 
