@@ -36,12 +36,11 @@
    'self-insert-command
    minibuffer-local-completion-map))
 
-(def-package! lsp-scala
-  :after scala-mode
+(def-package! lsp-metals
   :demand t
-  ;; Optional - enable lsp-scala automatically in scala files
+  ;; Optional - enable lsp-metals automatically in scala files
   :hook (scala-mode . lsp)
-  :init (setq lsp-scala-server-command "~/.local/bin/metals-emacs"))
+  :init (setq lsp-metals-server-command "~/.local/bin/metals-emacs"))
 
 ;;(after! lsp
 ;;  (setq 
