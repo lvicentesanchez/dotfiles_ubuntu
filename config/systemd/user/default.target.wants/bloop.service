@@ -1,1 +1,1 @@
-/home/luis/.bloop/systemd/bloop.service
+/usr/lib/systemd/user/bloop.service
