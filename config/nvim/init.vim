@@ -7,8 +7,7 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'derekwyatt/vim-scala'
 Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-Plug 'racer-rust/vim-racer'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'rust-lang/rust.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -86,14 +85,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-
-" Racer
-"
-set hidden
-let g:racer_cmd = "~/.cargo/bin/racer"
-let g:racer_experimental_completer = 1
-
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 
 " Vim-scala
 "
