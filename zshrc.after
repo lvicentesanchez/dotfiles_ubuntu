@@ -17,7 +17,3 @@ autoload -U +X bashcompinit && bashcompinit
 
 complete -o nospace -C /usr/bin/vault vault
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/luis/.cache/pacaur/nodejs-serverless/pkg/nodejs-serverless/usr/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/luis/.cache/pacaur/nodejs-serverless/pkg/nodejs-serverless/usr/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-
